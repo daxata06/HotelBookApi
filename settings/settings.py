@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -38,7 +39,9 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "apps.hotels",
+    "apps.users",
     "rest_framework",
+    "rest_framework_simplejwt"
 ]
 
 MIDDLEWARE = [
@@ -81,6 +84,31 @@ DATABASES = {
     }
 }
 
+
+REST_FRAMEWORK = {
+    
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        
+        'apps.users.authentication.CookieJWTAuthentication',
+    )
+    
+}
+
+AUTH_USER_MODEL = "users.User" 
+
+SIMPLE_JWT = {
+    'ROTATE_REFRESH_TOKENS': True, 
+    'BLACKLIST_AFTER_ROTATION': True,
+
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=5), 
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=5),
+
+    'REFRESH_COOKIE': 'refresh_token',  
+    'AUTH_COOKIE': 'access_token',  
+    'AUTH_COOKIE_SECURE': False, 
+    'AUTH_COOKIE_HTTP_ONLY': True,  
+    'AUTH_COOKIE_SAMESITE': 'Strict',
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
