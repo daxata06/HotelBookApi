@@ -3,8 +3,8 @@ from .views import HotelViewSet
 from django.urls import path, include
 
 router = routers.DefaultRouter()
-router.register(r'hotels', HotelViewSet, basename='hotel')
+router.register(r"hotels", HotelViewSet, basename="hotel")
 
 urlpatterns = [
-    path('', include(router.urls)),
+    path("", include(router.urls)),
 ]

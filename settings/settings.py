@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     "apps.hotels",
     "apps.users",
     "rest_framework",
-    "rest_framework_simplejwt"
+    "rest_framework_simplejwt",
 ]
 
 MIDDLEWARE = [
@@ -86,28 +86,23 @@ DATABASES = {
 
 
 REST_FRAMEWORK = {
-    
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        
-        'apps.users.authentication.CookieJWTAuthentication',
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "apps.users.authentication.CookieJWTAuthentication",
     )
-    
 }
 
-AUTH_USER_MODEL = "users.User" 
+AUTH_USER_MODEL = "users.User"
 
 SIMPLE_JWT = {
-    'ROTATE_REFRESH_TOKENS': True, 
-    'BLACKLIST_AFTER_ROTATION': True,
-
-    'ACCESS_TOKEN_LIFETIME': timedelta(days=5), 
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=5),
-
-    'REFRESH_COOKIE': 'refresh_token',  
-    'AUTH_COOKIE': 'access_token',  
-    'AUTH_COOKIE_SECURE': False, 
-    'AUTH_COOKIE_HTTP_ONLY': True,  
-    'AUTH_COOKIE_SAMESITE': 'Strict',
+    "ROTATE_REFRESH_TOKENS": True,
+    "BLACKLIST_AFTER_ROTATION": True,
+    "ACCESS_TOKEN_LIFETIME": timedelta(days=5),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=5),
+    "REFRESH_COOKIE": "refresh_token",
+    "AUTH_COOKIE": "access_token",
+    "AUTH_COOKIE_SECURE": False,
+    "AUTH_COOKIE_HTTP_ONLY": True,
+    "AUTH_COOKIE_SAMESITE": "Strict",
 }
 
 # Password validation

@@ -29,9 +29,7 @@ class HotelSerializer(serializers.ModelSerializer):
         ):
             Country.objects.create(name=validated_data["location"]["country"]["name"])
         if (
-            City.objects.filter(
-                name=validated_data["location"]["name"]
-            ).exists()
+            City.objects.filter(name=validated_data["location"]["name"]).exists()
             is False
         ):
             City.objects.create(
@@ -46,7 +44,7 @@ class HotelSerializer(serializers.ModelSerializer):
 
         try:
             return Hotel.objects.create(**validated_data)
-        except: #noqa
+        except:  # noqa
             raise serializers.ValidationError(
                 "Hotel you are trying to add already exists"
             )
